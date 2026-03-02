@@ -8,9 +8,10 @@ It introduces modifications based on both the [OpenPI] project and the [lerobot_
 [openpi]: https://github.com/Physical-Intelligence/openpi.git
 [lerobot_alohamini]: https://github.com/liyiteng/lerobot_alohamini.git
 
-Technical Principle — Running Pi-0.5 on AlohaMini (16-DoF version):
-The external control interface exposes a 16-DoF action space (AlohaMini with dual 5-axis arms + grippers).
-Internally, virtual joints are introduced to expand the action space to 18-DoF for compatibility with the OpenPI policy format, and the outputs are finally remapped back to 16-DoF during deployment.
+Technical Principle — Running Pi-0.5 on AlohaMini (16/18-DoF):
+- Pi-0.5 uses an internal 18D action space.
+- If your robot is 16-DoF, add virtual joints to align 16 -> 18.
+- If your robot is 18-DoF, use direct passthrough (no virtual joints).
 
 First, add `alohamini_policy.py` to the `policies` folder in the **openpi** project. The specific code is provided in this folder.
 
@@ -19,24 +20,15 @@ Then, add the following modifications to the `/src/openpi/training/config.py` fi
 ```python
 @dataclasses.dataclass(frozen=True)
 class LeRobotAlohaMiniDataConfig(DataConfigFactory):
-   
     default_prompt: str | None = None
     bgr_to_rgb: bool = False
     flip_images_hw: bool = False
+    robot_dof: int = 16  # 16 or 18
     dataset_action_dim: int = 16
     use_delta_actions: bool = True
 
     delta_action_mask: tyro.conf.Suppress[Sequence[bool]] = dataclasses.field(
-        default_factory=lambda: (  
-            [True] * 5  
-            + [False]  
-            + [False]  
-            + [True] * 5  
-            + [False]  
-            + [False]  
-            + [False, False]  
-            + [False]  
-        )
+        default_factory=lambda: [True] * 18
     )
 
     repack_transforms: tyro.conf.Suppress[_transforms.Group] = dataclasses.field(
@@ -61,20 +53,17 @@ class LeRobotAlohaMiniDataConfig(DataConfigFactory):
 
     @override
     def create(self, assets_dirs: pathlib.Path, model_config: _model.BaseModelConfig) -> DataConfig:
-        if len(self.delta_action_mask) == 18:
-            add_virtual_joint = alohamini_policy.AddVirtualJoint6Legacy()
-            expanded_dim = 18
-        else:
-            add_virtual_joint = alohamini_policy.AddVirtualJoint6()
-            expanded_dim = 17
-        
+        if self.robot_dof not in (16, 18):
+            raise ValueError(f"robot_dof must be 16 or 18, got {self.robot_dof}")
+
+        expanded_dim = 18  # Pi0.5 internal action space
         data_transforms = _transforms.Group(
             inputs=[
                 alohamini_policy.AlohaMiniInputs(bgr_to_rgb=self.bgr_to_rgb),
-                add_virtual_joint,  
+                alohamini_policy.AlignToPi05ActionSpace(robot_dof=self.robot_dof),
             ],
             outputs=[
-                alohamini_policy.AlohaMiniOutputs(internal_dim=expanded_dim)
+                alohamini_policy.AlohaMiniOutputs(internal_dim=18, robot_dof=self.robot_dof)
             ],
         )
         if self.flip_images_hw:
@@ -82,16 +71,16 @@ class LeRobotAlohaMiniDataConfig(DataConfigFactory):
                 inputs=[
                     alohamini_policy.AlohaMiniInputs(bgr_to_rgb=self.bgr_to_rgb),
                     _transforms.FlipImages(flip_h=True, flip_w=True),
-                    add_virtual_joint,
+                    alohamini_policy.AlignToPi05ActionSpace(robot_dof=self.robot_dof),
                 ],
                 outputs=data_transforms.outputs,
             )
 
         if self.use_delta_actions:
             mask = list(self.delta_action_mask)
-            if len(mask) != expanded_dim:
+            if len(mask) != 18:
                 raise ValueError(
-                    f"delta_action_mask length must be {expanded_dim} (after adding virtual joints), got {len(mask)}")
+                    f"delta_action_mask length must be 18, got {len(mask)}")
             data_transforms = data_transforms.push(
                 inputs=[_transforms.DeltaActions(mask)],
                 outputs=[_transforms.AbsoluteActions(mask)],
@@ -117,9 +106,10 @@ TrainConfig(
         data=LeRobotAlohaMiniDataConfig(
             repo_id="/home/cenzl/VLA/lerobot_dataset_precessing/pick_up_merged",
             default_prompt="pickup the rubbish",
+            robot_dof=16,  # set 18 for native 18-DoF robots
             dataset_action_dim=16,
             use_delta_actions=True,
-            # Length 18 implies internal 18D space (virtual joints kept, theta.vel kept).
+            # Pi0.5 internal action space is always 18D.
             delta_action_mask=[
                 True, True, True, True, True, True, False,
                 True, True, True, True, True, True, False,
@@ -155,8 +145,23 @@ python scripts/serve_policy_http.py \
 ```
 
 ```
-python -m lerobot.robots.alohamini.lekiwi_host
+python -m lerobot.robots.alohamini.lekiwi_host \
+  --arm_profile so-arm-5dof
 
-python examples/alohamini/evaluate_bi.py   --policy_mode remote_http   --server_url http://localhost:8000   --task_description "<prompt>"   --remote_ip 10.100.74.7
+python examples/pi0.5_openpi/evaluate_bi.py \
+  --policy_mode remote_http \
+  --server_url http://localhost:8000 \
+  --task_description "<prompt>" \
+  --remote_ip 10.100.74.7 \
+  --robot_dof 16
 ```
 
+For 18-DoF robots:
+```
+python examples/pi0.5_openpi/evaluate_bi.py \
+  --policy_mode remote_http \
+  --server_url http://localhost:8000 \
+  --task_description "<prompt>" \
+  --remote_ip 10.100.74.7 \
+  --robot_dof 18
+```

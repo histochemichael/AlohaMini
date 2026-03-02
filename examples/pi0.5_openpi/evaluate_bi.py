@@ -56,8 +56,11 @@ def _expected_api16_state_order() -> list[str]:
     ]
 
 
-def _validate_state_action_order(dataset_features: dict[str, dict]) -> None:
-    expected = _expected_api16_state_order()
+def _validate_state_action_order(
+    dataset_features: dict[str, dict],
+    requested_dof: int | None = None,
+) -> tuple[list[str], int]:
+    expected_api16 = _expected_api16_state_order()
 
     state_ft = dataset_features.get("observation.state")
     action_ft = dataset_features.get("action")
@@ -74,17 +77,30 @@ def _validate_state_action_order(dataset_features: dict[str, dict]) -> None:
             f"- action.names: {action_names}\n"
         )
 
-    if state_names != expected:
+    state_dim = int(state_ft.get("shape", (0,))[0])
+    action_dim = int(action_ft.get("shape", (0,))[0])
+
+    if requested_dof is not None and requested_dof not in (16, 18):
+        raise ValueError(f"requested_dof must be 16 or 18, got {requested_dof}")
+
+    if state_dim != action_dim:
+        raise ValueError(f"State/action dim mismatch: state={state_dim}, action={action_dim}")
+    if state_dim not in (16, 18):
+        raise ValueError(f"Only 16/18-DoF are supported, got dim={state_dim}")
+    if requested_dof is not None and state_dim != requested_dof:
+        raise ValueError(f"Requested {requested_dof}-DoF but robot/dataset features report {state_dim}-DoF")
+
+    if state_dim == 16 and state_names != expected_api16:
         raise ValueError(
             "State/action order does not match OpenPI AlohaMini API16.\n"
-            f"- expected: {expected}\n"
+            f"- expected: {expected_api16}\n"
             f"- got:      {state_names}\n"
         )
 
-    if int(state_ft.get("shape", (0,))[0]) != 16:
-        raise ValueError(f"Expected state dim=16, got shape={state_ft.get('shape')}")
-    if int(action_ft.get("shape", (0,))[0]) != 16:
-        raise ValueError(f"Expected action dim=16, got shape={action_ft.get('shape')}")
+    if not state_names:
+        state_names = [f"joint_{i}" for i in range(state_dim)]
+
+    return state_names, state_dim
 
 
 def _print_camera_info(robot: LeKiwiClient, dataset_features: dict[str, dict], obs_sample: dict[str, Any]) -> None:
@@ -137,6 +153,7 @@ def _validate_action_values(
     action_dict: dict[str, Any],
     dataset_features: dict[str, dict],
     expected_order: list[str],
+    expected_action_dim: int,
     frame_idx: int = 0,
     log_every_n: int = 30,
 ) -> None:
@@ -154,8 +171,8 @@ def _validate_action_values(
         action_array = action_array.flatten()
 
     # Check dimension
-    if len(action_array) != 16:
-        print(f"[action_validation] ERROR: Action dim mismatch: expected 16, got {len(action_array)}")
+    if len(action_array) != expected_action_dim:
+        print(f"[action_validation] ERROR: Action dim mismatch: expected {expected_action_dim}, got {len(action_array)}")
         return
 
     # Check for NaN/Inf
@@ -175,11 +192,16 @@ def _validate_action_values(
         # Base velocity: typically small (e.g., ±0.5 m/s)
         # Lift: typically in mm, depends on robot
 
-        joint_angles = action_array[:12]  # First 12 are joints (left 5 + left gripper + right 5 + right gripper)
-        left_gripper = action_array[5:6]  # Index 5: left gripper
-        right_gripper = action_array[11:12]  # Index 11: right gripper
-        base_vel = action_array[12:15]  # x, y, theta
-        lift = action_array[15:16]  # lift axis
+        if expected_action_dim == 16:
+            joint_angles = action_array[:12]
+            base_vel = action_array[12:15]
+            lift = action_array[15:16]
+        elif expected_action_dim == 18:
+            joint_angles = action_array[:14]
+            base_vel = action_array[14:17]
+            lift = action_array[17:18]
+        else:
+            raise ValueError(f"Unsupported action dim for validation: {expected_action_dim}. Expected 16 or 18.")
 
         warnings = []
         critical_errors = []
@@ -191,11 +213,11 @@ def _validate_action_values(
                 f"This suggests actions may not be properly denormalized or have wrong scale."
             )
 
-        if np.any(np.abs(joint_angles) > 10.0):  # > ~3π, clearly abnormal
+        if joint_angles.size and np.any(np.abs(joint_angles) > 10.0):  # > ~3π, clearly abnormal
             warnings.append(f"Joint angles out of range: min={joint_angles.min():.2f}, max={joint_angles.max():.2f}")
-        if np.any(np.abs(base_vel[:2]) > 5.0):  # x, y velocity > 5 m/s, clearly abnormal
+        if base_vel.size >= 2 and np.any(np.abs(base_vel[:2]) > 5.0):  # x, y velocity > 5 m/s, clearly abnormal
             warnings.append(f"Base x/y velocity out of range: {base_vel[:2]}")
-        if np.any(np.abs(lift) > 1000.0):  # Lift > 1000mm, likely abnormal
+        if lift.size and np.any(np.abs(lift) > 1000.0):  # Lift > 1000mm, likely abnormal
             warnings.append(f"Lift axis out of range: {lift}")
 
         if critical_errors:
@@ -447,6 +469,13 @@ def main():
             "Use when disk space is limited or only robot execution is needed. With local_act, --hf_dataset_id is required for normalization stats."
         ),
     )
+    parser.add_argument(
+        "--robot_dof",
+        type=str,
+        default="auto",
+        choices=("auto", "16", "18"),
+        help="Robot action/state DoF. auto=read from robot dataset features (default).",
+    )
 
     args = parser.parse_args()
 
@@ -471,7 +500,9 @@ def main():
     dataset_features = {**action_features, **obs_features}
 
     # ---- Readiness checks: state/action order + camera resolution ----
-    _validate_state_action_order(dataset_features)
+    requested_dof = None if args.robot_dof == "auto" else int(args.robot_dof)
+    state_order, action_dim = _validate_state_action_order(dataset_features, requested_dof=requested_dof)
+    print(f"[info] Detected robot action/state DoF: {action_dim}")
 
     # When --no_save and local_act, load existing dataset for normalization stats only (no disk write).
     dataset_for_stats = None
@@ -611,7 +642,8 @@ def main():
                     action_tensor=action_tensor,
                     action_dict={},  # Will be created below
                     dataset_features=ds_features,
-                    expected_order=_expected_api16_state_order(),
+                    expected_order=state_order,
+                    expected_action_dim=action_dim,
                     frame_idx=frame_idx,
                     log_every_n=30,
                 )

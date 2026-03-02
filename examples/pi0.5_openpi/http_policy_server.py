@@ -232,6 +232,7 @@ class HTTPPolicyServer:
         host: str = "0.0.0.0",
         port: int = 8000,
         metadata: dict[str, Any] | None = None,
+        supported_state_dims: tuple[int, ...] = (16, 18),
     ) -> None:
         """Initialize the HTTP policy server.
 
@@ -240,11 +241,13 @@ class HTTPPolicyServer:
             host: Host to bind to (default: "0.0.0.0").
             port: Port to bind to (default: 8000).
             metadata: Optional metadata to include in responses.
+            supported_state_dims: Accepted observation.state dimensions.
         """
         self._policy = policy
         self._host = host
         self._port = port
         self._metadata = metadata or {}
+        self._supported_state_dims = tuple(sorted(set(int(x) for x in supported_state_dims)))
 
         self.app = FastAPI(
             title="OpenPI Policy Server",
@@ -313,11 +316,11 @@ class HTTPPolicyServer:
                 state = np.asarray(obs["state"])
                 if state.ndim != 1:
                     raise HTTPException(status_code=422, detail=f"'state' must be a 1D vector. Got shape={state.shape}.")
-                if state.shape[0] not in (16, 17):
+                if state.shape[0] not in self._supported_state_dims:
                     raise HTTPException(
                         status_code=422,
                         detail=(
-                            f"'state' must have 16 dims (API includes theta slot) or 17 dims (internal, theta dropped). "
+                            f"'state' dim must be one of {self._supported_state_dims}. "
                             f"Got {state.shape[0]}."
                         ),
                     )
@@ -395,4 +398,3 @@ class HTTPPolicyServer:
     def serve_forever(self) -> None:
         """Start the server and run forever."""
         self.serve()
-
