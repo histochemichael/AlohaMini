@@ -10,7 +10,7 @@ Fully 3D-printable on a Bambu P2S, built for embodied AI research, and priced fo
 
 ## Updates
 
-- [2026-05-31] AlohaMini2 released — 70 kg base load, 30 kg lift, 1 kg arm payload, 6+1 DoF, 52 cm reach, under $1,000 self-build BOM
+- [2026-06-06] AlohaMini2 released — 70 kg base load, 30 kg lift, 1 kg arm payload, 6+1 DoF, 52 cm reach, under $1,000 self-build BOM
 - [2026-02-26] Fine-tuning and deployment guide for Pi 0.5 on AlohaMini (`examples/pi0.5_openpi`)
 - [2025-12-18] URDF and simulation assets available (`AlohaMini1/simulation/src/Aloha/`)
 - [2025-11-27] STEP (CAD) files available (`AlohaMini1/hardware/mobile_base/step/`)
