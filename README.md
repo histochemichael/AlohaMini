@@ -20,11 +20,11 @@ Fully 3D-printable on a Bambu P2S, built for embodied AI research, and priced fo
 
 ### Architecture
 
-| | AlohaMini | **AlohaMini2** |
+| | AlohaMini | AlohaMini2 |
 |---|---|---|
-| Arm system | SO-ARM100 / SO-ARM101 | **AM-ARM200** |
-| Mobile base system | mobile_base1 | **mobile_base2** |
-| Printer requirement | Large-format FDM (>= 380 mm bed) | **Bambu P2S** (consumer-grade) |
+| Arm system | SO-ARM100 / SO-ARM101 | AM-ARM200 |
+| Mobile base system | mobile_base1 | mobile_base2 |
+| Printer requirement | Large-format FDM (>= 380 mm bed) | Bambu P2S (consumer-grade) |
 
 ### Performance
 
