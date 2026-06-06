@@ -1,7 +1,8 @@
 # AlohaMini2
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20chat-blue)](https://discord.gg/CacMUBaFgJ) [![Follow on X](https://img.shields.io/twitter/follow/liyitengx?style=social)](https://x.com/liyitengx)
 
-**AlohaMini2** is a dual-arm mobile robot with a motorized vertical lift — a major generational upgrade over AlohaMini while keeping the self-build BOM under $1,000.  
+AlohaMini2 is a dual-arm mobile robot with a motorized vertical lift — a major generational upgrade over AlohaMini1 while keeping the self-build BOM under $1,000.  
+
 Fully 3D-printable on a Bambu P2S, built for embodied AI research, and priced for anyone serious about real-world manipulation.
 
 > Assemble at home in ~120 minutes. Train or deploy with LeRobot.
@@ -9,7 +10,7 @@ Fully 3D-printable on a Bambu P2S, built for embodied AI research, and priced fo
 
 ## Updates
 
-- [2026-05-31] **AlohaMini2 released** — 70 kg base load, 50 kg lift, 1 kg arm payload, 6+1 DoF, 52 cm reach, under $1,000 self-build BOM
+- [2026-05-31] AlohaMini2 released — 70 kg base load, 50 kg lift, 1 kg arm payload, 6+1 DoF, 52 cm reach, under $1,000 self-build BOM
 - [2026-02-26] Fine-tuning and deployment guide for Pi 0.5 on AlohaMini (`examples/pi0.5_openpi`)
 - [2025-12-18] URDF and simulation assets available (`AlohaMini1/simulation/src/Aloha/`)
 - [2025-11-27] STEP (CAD) files available (`AlohaMini1/hardware/mobile_base/step/`)
@@ -27,17 +28,17 @@ Fully 3D-printable on a Bambu P2S, built for embodied AI research, and priced fo
 
 ### Performance
 
-| | AlohaMini | **AlohaMini2** |
+| | AlohaMini | AlohaMini2 |
 |---|---|---|
-| Base max load | 5 kg | **70 kg** (can briefly carry an adult) |
-| Lift capacity | 2 kg | **30 kg** |
-| Lift stability | Standard | **Significantly reinforced** |
-| Arm payload | 0.3 kg | **1 kg** |
-| Arm reach | 40 cm | **52 cm** |
-| Arm DoF | 5+1 | **6+1** |
+| Base max load | 10 kg | 70 kg  |
+| Lift capacity | 5 kg | 30 kg |
+| Lift stability | Standard | Significantly reinforced |
+| Arm payload | 0.3 kg | 1 kg |
+| Arm reach | 40 cm | 52 cm |
+| Arm DoF | 5+1 | 6+1 |
 | Cameras | 5 | 5 (forward, backward, chest, dual wrist) |
 
-AlohaMini2 is **LeRobot-ready** out of the box and remains **fully open-source** — hardware CAD, URDF, and software included.
+AlohaMini2 is LeRobot-ready out of the box and remains fully open-source — hardware CAD, URDF, and software included.
 
 
 ## Gallery
@@ -81,10 +82,10 @@ AlohaMini2 is **LeRobot-ready** out of the box and remains **fully open-source**
 
 ## Product Line
 
-| Model | Chassis | Lift | Arm | Target | Official Store (US) | Official Store (CN) |
-|---|---|---|---|---|---|---|
-| **AlohaMini2** | 3D-print, 70 kg load | 50 kg | 1 kg / 52 cm / 6+1 DoF | Researchers, advanced builders | — | [Taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
-| **AlohaMini2 Pro** | Hybrid 3D-print + metal | 50 kg | 1 kg / 52 cm / 6+1 DoF | Plug-and-play research labs | — | [Taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
+| Model | Servo System | Chassis | Best For | Official Store (CN) |
+|---|---|---|---|---|
+| **AlohaMini2** | STS-3215 standard servos | 3D-printed base | Self-build research and development | [Taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
+| **AlohaMini2 Pro** | STS-3250 industrial-grade servos | Metal-reinforced base | Higher-duty research and lab use | [Taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
 
 
 ## Contact
