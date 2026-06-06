@@ -1,100 +1,113 @@
-# AlohaMini
+# AlohaMini2
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20chat-blue)](https://discord.gg/CacMUBaFgJ) [![Follow on X](https://img.shields.io/twitter/follow/liyitengx?style=social)](https://x.com/liyitengx)
 
+**AlohaMini2** is a dual-arm mobile robot with a motorized vertical lift — a major generational upgrade over AlohaMini while keeping the self-build BOM under $1,000.  
+Fully 3D-printable on a Bambu P2S, built for embodied AI research, and priced for anyone serious about real-world manipulation.
 
-AlohaMini is a dual-arm mobile robot with a motorized vertical lift — beautifully designed, fully 3D-printable, and affordable.  
-
-Built for embodied AI research and real-world manipulation. Assemble at home in ~60 minutes, customize every part, and train or deploy with LeRobot.
-
-Note:
-Use ROS only if you need URDF visualization, RViz inspection, or Gazebo simulation.
+> Assemble at home in ~120 minutes. Train or deploy with LeRobot.
 
 
 ## Updates
 
-- [2026-02-26] Update the fine-tuning and deployment guide for Pi 0.5 on Alohamini ('examples/pi0.5_openpi')
-- [2025-12-18] — URDF and simulation assets are now available for visualization and simulation (`simulation/src/Aloha/`)
-- [2025-11-27] STEP (CAD) files are now available (`/hardware/mobile_base/step/`)
+- [2026-05-31] **AlohaMini2 released** — 70 kg base load, 50 kg lift, 1 kg arm payload, 6+1 DoF, 52 cm reach, under $1,000 self-build BOM
+- [2026-02-26] Fine-tuning and deployment guide for Pi 0.5 on AlohaMini (`examples/pi0.5_openpi`)
+- [2025-12-18] URDF and simulation assets available (`AlohaMini1/simulation/src/Aloha/`)
+- [2025-11-27] STEP (CAD) files available (`AlohaMini1/hardware/mobile_base/step/`)
 
 
-### What Makes It Different
+## What's New in AlohaMini2
 
-- **Motorized vertical lift** — 0–60 cm travel (floor-to-table reach)
-- **5-camera perception system** — top, front, back, and dual arm cameras engineered for embodied-AI reproducibility
-- **Completely open-source** — hardware and software freely available
-- **LeRobot-compatible** — works out of the box
-- **Clean, modern design** — built for both function and aesthetics
-- **Low-cost & accessible** — engineered so anyone can build a capable robot at home
+### Architecture
+
+| | AlohaMini | **AlohaMini2** |
+|---|---|---|
+| Arm system | SO-ARM100 / SO-ARM101 | **AM-ARM200** |
+| Mobile base system | mobile_base1 | **mobile_base2** |
+| Printer requirement | Large-format FDM (>= 380 mm bed) | **Bambu P2S** (consumer-grade) |
+
+### Performance
+
+| | AlohaMini | **AlohaMini2** |
+|---|---|---|
+| Base max load | 5 kg | **70 kg** (can briefly carry an adult) |
+| Lift capacity | 2 kg | **30 kg** |
+| Lift stability | Standard | **Significantly reinforced** |
+| Arm payload | 0.3 kg | **1 kg** |
+| Arm reach | 40 cm | **52 cm** |
+| Arm DoF | 5+1 | **6+1** |
+| Cameras | 5 | 5 (forward, backward, chest, dual wrist) |
+
+AlohaMini2 is **LeRobot-ready** out of the box and remains **fully open-source** — hardware CAD, URDF, and software included.
 
 
-## 📸 Gallery
+## Gallery
 
 <p align="center">
-  <img src="docs/media/alohamini_git.png" width="100%"/>
+  <img src="AlohaMini1/docs/media/alohamini_git.png" width="100%"/>
 </p>
 
 
-## ⚙️ Bill of Materials (BOM)
-### Main Components
+## Bill of Materials (BOM)
 
 | Component | Model / Notes | Qty | Unit Price (USD) |
 |-----------|---------------|-----|------------------|
-| Servo motors | Feetech STS3215 (12V bus) | 16 | $13.89 |
-| Motor control boards | Waveshare Bus Servo Adapter (A) | 2 | $10.55 |
-| Compute platform | Raspberry Pi 5 (4/8GB) | 1 | $80 |
-| Cameras | 720p USB cameras (2 for arms, 3 for mobile base) | 5 | $20 |
-| Mobility system | Omni wheels | 3 | $36.00 |
-| Battery | 12V Li-ion pack | 2 | $32.99 |
-| Frame | 3D-printed body (ABS / PETG / PLA) | — | ~4kg filament (self-print) |
-| **Total** | — | — | **~$600 (self-print)** |
+| Servo — standard | Feetech STS-3215 (12V, follower arms + base) | 11 | ~$16 |
+| Servo — high-torque | Feetech STS-3095 (12V 95 kg·cm, lift + arm power joints) | 7 | ~$50 |
+| Bus servo controllers | Waveshare | 2 | ~$5 |
+| Compute | Raspberry Pi 5 (2 GB) | 1 | ~$93 |
+| Cameras | 720p USB, 2.4 mm focal length | 5 | ~$17 |
+| Omni wheels | 127 mm (74A) | 3 | ~$40 |
+| Battery 12V | 11200 mAh Li-ion | 2 | ~$16 |
+| Frame | 3D-printed on Bambu P2S | — | ~4 kg filament |
+| **Total** | — | — | **~$950** |
 
-Note: 
-- Printable STL files under `/hardware/`
-- Compute platform can be replaced with Jetson Nano or similar SBCs if desired.
-- URDF files will be released soon
+> Full BOM with CN/US buy links: **[AlohaMini2/docs/BOM.md](AlohaMini2/docs/BOM.md)**  
+> Compute can be swapped for Jetson Orin Nano or any SBC with USB 3.0.  
 
 ## Quick Start
 
-Start building and running AlohaMini:
+1. **BOM** — review the component list and source parts  
+   See **[Bill of Materials](AlohaMini2/docs/BOM.md)**
 
-1. **Hardware acquisition** — Purchase components and 3D print parts  
-   See **[BOM & 3D-Print](docs/BOM.md)**
+2. **3D Printing** — print all structural parts (~4 kg filament, Bambu P2S)  
+   See **[Print Guide](AlohaMini2/docs/BOM.md#3d-printing)**
 
-1. **Assembly** — build the robot in ~60 minutes (SO-ARM pre-assembled)  
-   See **[assembly guide](docs/hardware_assembly.md)**
+3. **Assembly** — build in ~60 minutes (arms pre-assembled)  
+   See **[Assembly Guide](AlohaMini2/docs/assembly_guide.md)**
 
-1. **Software setup & teleoperation** — install, connect, and control the robot  
-   See **[software guide](software)**
-
-
-
+4. **Software setup & teleoperation** — install, connect, control  
+   See **[Software Guide](software)**
 
 
-##  Product Line
-| Model | Build | Rigidity | Target Users | Official Store (US) | Official Store (CN) |
-|---|---|---|---|---|---|
-| **AlohaMini** | Fully 3D-printed | Standard | Education, makers, research labs, home builds | - | [taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
-| **AlohaMini Pro** | Hybrid **3D-print + metal** | **~3×–5× stiffer** | Researchers needing plug-and-play, stable hardware | - | [taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
+## Product Line
 
-> Same URDF & control stack across both versions — only structural materials differ.  
-> Official store links are optional purchase channels for complete robots / kits.  
-> AlohaMini remains open-source and can be self-built from the BOM, 3D-print files, and assembly docs.  
+| Model | Chassis | Lift | Arm | Target | Official Store (US) | Official Store (CN) |
+|---|---|---|---|---|---|---|
+| **AlohaMini2** | 3D-print, 70 kg load | 50 kg | 1 kg / 52 cm / 6+1 DoF | Researchers, advanced builders | — | [Taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
+| **AlohaMini2 Pro** | Hybrid 3D-print + metal | 50 kg | 1 kg / 52 cm / 6+1 DoF | Plug-and-play research labs | — | [Taobao](https://item.taobao.com/item.htm?abbucket=9&id=1015799132286) |
+
 
 ## Contact
+
 Email: liyiteng+github@gmail.com  
 WeChat: liyiteng  
-Videos & tutorials soon on: Bilibili / YouTube / TikTok
+Videos & tutorials: Bilibili / YouTube / TikTok
+
 
 ## Team
-AlohaMini is created by:  
-**Li Yiteng** / **Wu Zhiyong**
 
-##  Acknowledgements
+AlohaMini is created by **Li Yiteng** and **Wu Zhiyong**.
+
+
+## Acknowledgements
+
 Thanks to the open robotics community:  
 **ALOHA · LeKiwi · SO-ARM100 · SO-ARM100-Track-Axis · Pi-0.5 · LeRobot · Hugging Face**
 
-## ⭐ Support AlohaMini
-If you like this project:
-- ⭐ Star the repo  
-- 🔔 Follow updates  
-- 💬 Join the community  
+
+## Support AlohaMini
+
+If you find this project useful:
+- Star the repo
+- Follow for updates
+- Join the community on Discord
