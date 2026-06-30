@@ -112,6 +112,50 @@ Slide it into the slot. If there are any burrs on the printed part, file them do
 27. Mobile Base assembly complete!
 <img src="./media/assembly/37.jpg" width="400">
 
+## Optional Mobile Base Components
+
+These optional parts add the touchscreen monitor enclosure, SO-101 arm adaptor plates for the `OB_T_Connector` parts, and camera covers with spacers.
+
+### Touchscreen monitor enclosure
+
+Use `Monitor_Enclosure` and `Monitor_Back_Panel` to enclose the 7-inch touchscreen monitor. The enclosure can be mounted to the main post after the monitor wiring has been routed.
+
+<table>
+  <tr>
+    <td align="center"><img src="./media/assembly/optional-monitor-enclosure-front.jpg" width="260"></td>
+    <td align="center"><img src="./media/assembly/optional-monitor-enclosure-back.jpg" width="260"></td>
+    <td align="center"><img src="./media/assembly/optional-monitor-enclosure-installed.jpg" width="260"></td>
+  </tr>
+  <tr>
+    <td align="center">Front of monitor enclosure</td>
+    <td align="center">Back panel and ventilation</td>
+    <td align="center">Installed on the mobile base</td>
+  </tr>
+</table>
+
+### SO-101 arm adaptor for the OB_T connectors
+
+Use `OB_T_Connector_So101_Adaptor` between the SO-101 follower arms and the `OB_T_Connector` parts when adapting the arms to this mobile base. Check alignment before final tightening.
+
+<table>
+  <tr>
+    <td align="center"><img src="./media/assembly/optional-so101-adaptor-top.jpg" width="300"></td>
+    <td align="center"><img src="./media/assembly/optional-so101-adaptor-bottom.jpg" width="300"></td>
+    <td align="center"><img src="./media/assembly/optional-adaptor-camera-covers-installed.jpg" width="300"></td>
+  </tr>
+  <tr>
+    <td align="center">Adaptor side with connector slots</td>
+    <td align="center">Adaptor mounting side</td>
+    <td align="center">Adaptor installed with arms</td>
+  </tr>
+</table>
+
+### Camera covers and spacers
+
+Use `Camera_Cover` and `Camera_Spacers` for the camera modules. Insert the spacers between the camera board and cover, then fasten with 12 mm M2.5 screws. The BOM lists six M2.5×12 screws for this optional camera cover setup.
+
+<img src="./media/assembly/optional-adaptor-camera-covers-installed.jpg" width="500">
+
 ## Leader arms and Follower arms
 For the assembly of Leader arms and Follower arms, please refer to the tutorial: [SO-101 Assembly Guide](https://huggingface.co/docs/lerobot/so101). 
 
