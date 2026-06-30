@@ -59,6 +59,11 @@ Open from the PC at `http://<PI_IP>:9100`.
 
 ### Terminal 1: base, lift, and steering sender
 
+Optional hardware references:
+
+- USB foot pedals for keyboard-style base/lift input: https://www.amazon.com/dp/B0B1ZJVZ2K?ref=ppx_pop_mob_ap_share
+- Phone holder / VR-style adapter for phone steering: https://www.amazon.com/dp/B0B1ZJVZ2K?ref=ppx_pop_mob_ap_share
+
 ```bat
 conda activate <PEDAL_ENV>
 cd <PATH_TO_AlohaMini>\AlohaMini1\teleoperate\pc
