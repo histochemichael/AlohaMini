@@ -168,7 +168,18 @@ Face steering uses the PC camera and these main parameters. A standard USB webca
 ```
 
 Increase `--face-deadband` if tiny head movements cause unwanted turning. Increase/decrease `--turn-speed` to scale robot turning speed.
-
+<table>
+  <tr>
+    <td align="center"><img src="media/face-steering-center.png" alt="Center steering face position" height="220"></td>
+    <td align="center"><img src="media/face-steering-left.png" alt="Left steering face position" height="220"></td>
+    <td align="center"><img src="media/face-steering-right.png" alt="Right steering face position" height="220"></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Center steering</strong></td>
+    <td align="center"><strong>Left steering</strong></td>
+    <td align="center"><strong>Right steering</strong></td>
+  </tr>
+</table>
 
 ## Safety controls
 
