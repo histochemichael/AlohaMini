@@ -61,7 +61,6 @@ These are not strict requirements; they are examples of hardware used during bri
 
 Any equivalent device should work if it presents itself to the PC as keyboard input for pedals, or securely holds the phone while the browser page streams orientation data.
 
-![Pedal control example](media/pedal-control-example.gif)
 
 ## Dependencies
 
@@ -170,7 +169,6 @@ Face steering uses the PC camera and these main parameters. A standard USB webca
 
 Increase `--face-deadband` if tiny head movements cause unwanted turning. Increase/decrease `--turn-speed` to scale robot turning speed.
 
-![Facial steering example](media/facial-steering-example.gif)
 
 ## Safety controls
 
