@@ -27,6 +27,7 @@ On AlohaMini, the Host side consists of a PC workstation and leader arms. VR con
 | M2×12 Phillips screw | For camera mounts (OB_T_Camera_Mount.stl, OB_Top_Camera_Mount) | 12 | — | — | — | — |
 | M2.5×12 Phillips screw | For optional camera covers and spacers | 6 | — | — | — | — |
 | M3×12 hex socket screw | Total 36 pcs (Servo Mount×24 ,Side Panel×12 ) | 36 | — | — | — | — |
+| M3×16 hex socket screw | For optional touchscreen monitor enclosure | 4 | — | — | — | — |
 | M3×18 hex socket screw | For OB_Chassis_Wheel_Axle_Connector.stl | 12 | — | — | — | — |
 | M3×30 hex socket screw | For OB_T_Connector_Right/Left.stl | 8 | — | — | — | — |
 | M3 hex nut | For OB_T_Connector_Right/Left.stl | 8 | — | — | — | — |

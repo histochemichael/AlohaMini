@@ -118,7 +118,7 @@ These optional parts add the touchscreen monitor enclosure, SO-101 arm adaptor p
 
 ### Touchscreen monitor enclosure
 
-Use `Monitor_Enclosure` and `Monitor_Back_Panel` to enclose the 7-inch touchscreen monitor. The enclosure can be mounted to the main post after the monitor wiring has been routed.
+Use `Monitor_Enclosure` and `Monitor_Back_Panel` to enclose the 7-inch touchscreen monitor. The enclosure can be mounted to the main post after the monitor wiring has been routed. Fasten the enclosure with four M3×16 screws.
 
 <table>
   <tr>
