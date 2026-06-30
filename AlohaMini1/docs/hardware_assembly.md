@@ -169,7 +169,10 @@ For the assembly of Leader arms and Follower arms, please refer to the tutorial:
    <img src="./media/assembly/39.jpg" width="400">
 
 3. Attach the 12V to 5V step-down converter to the base and connect it to the Raspberry Pi.
-   <img src="./media/assembly/40.jpg" width="400">
+
+<p align="center">
+  <img src="./media/assembly/40.jpg" width="400">
+</p>
 
 4. Connect the 12V lithium battery to the step-down converter to provide power.
    <img src="./media/assembly/41.jpg" width="400">
