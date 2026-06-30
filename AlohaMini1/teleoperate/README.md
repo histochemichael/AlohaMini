@@ -60,7 +60,11 @@ These are not strict requirements; they are examples of hardware used during bri
 - Webcam for face steering: [Logitech C270 HD webcam](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6)
 
 Any equivalent device should work if it presents itself to the PC as keyboard input for pedals, or securely holds the phone while the browser page streams orientation data.
-
+<p align="center">
+  <img src="media/four-pedal-base-lift-control.jpg" alt="Four USB pedals for base and lift control" width="720">
+  <br>
+  <sub>Four-pedal base and lift control layout.</sub>
+</p>
 
 ## Dependencies
 
