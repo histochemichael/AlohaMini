@@ -112,6 +112,36 @@ Slide it into the slot. If there are any burrs on the printed part, file them do
 27. Mobile Base assembly complete!
 <img src="./media/assembly/37.jpg" width="400">
 
+
+## Leader arms and Follower arms
+For the assembly of Leader arms and Follower arms, please refer to the tutorial: [SO-101 Assembly Guide](https://huggingface.co/docs/lerobot/so101). 
+
+
+## Follower arms and Mobile Base Assembly
+
+1. Secure the robotic arm to both sides of the T-bracket using four M3x30 hex screws and four M3 nuts.
+   <img src="./media/assembly/38.jpg" width="400">
+
+2. Connect the 90cm servo cable from servo #11 to the other port on the Waveshare controller board of the **left arm**.
+   <img src="./media/assembly/39.jpg" width="400">
+
+3. Attach the 12V to 5V step-down converter to the base and connect it to the Raspberry Pi.
+   <img src="./media/assembly/40.jpg" width="400">
+
+4. Connect the 12V lithium battery to the step-down converter to provide power.
+
+   <img src="./media/assembly/41.jpg" width="400">
+
+6. Connect the male plug of the 1-to-2 DC splitter cable to the female connectors of the two DC extension cables.
+   <img src="./media/assembly/42.jpg" width="400">
+
+7. Connect the second 12V lithium battery to the female connector of the 1-to-2 DC splitter cable.
+   <img src="./media/assembly/43.jpg" width="400">
+
+8. Assembly fully complete!
+   <img src="./media/assembled2.png" >
+
+
 ## Optional Mobile Base Components
 
 These optional parts add the touchscreen monitor enclosure, SO-101 arm adaptor plates for the `OB_T_Connector` parts, and camera covers with spacers.
@@ -154,32 +184,4 @@ Use `OB_T_Connector_So101_Adaptor` between the SO-101 follower arms and the `OB_
 
 Use `Camera_Cover` and `Camera_Spacers` for the camera modules. Insert the spacers between the camera board and cover, then fasten with 12 mm M2.5 screws. The BOM lists six M2.5×12 screws for this optional camera cover setup.
 
-
-## Leader arms and Follower arms
-For the assembly of Leader arms and Follower arms, please refer to the tutorial: [SO-101 Assembly Guide](https://huggingface.co/docs/lerobot/so101). 
-
-
-## Follower arms and Mobile Base Assembly
-
-1. Secure the robotic arm to both sides of the T-bracket using four M3x30 hex screws and four M3 nuts.
-   <img src="./media/assembly/38.jpg" width="400">
-
-2. Connect the 90cm servo cable from servo #11 to the other port on the Waveshare controller board of the **left arm**.
-   <img src="./media/assembly/39.jpg" width="400">
-
-3. Attach the 12V to 5V step-down converter to the base and connect it to the Raspberry Pi.
-   <img src="./media/assembly/40.jpg" width="400">
-
-4. Connect the 12V lithium battery to the step-down converter to provide power.
-
-   <img src="./media/assembly/41.jpg" width="400">
-
-6. Connect the male plug of the 1-to-2 DC splitter cable to the female connectors of the two DC extension cables.
-   <img src="./media/assembly/42.jpg" width="400">
-
-7. Connect the second 12V lithium battery to the female connector of the 1-to-2 DC splitter cable.
-   <img src="./media/assembly/43.jpg" width="400">
-
-8. Assembly fully complete!
-   <img src="./media/assembled2.png" >
 
