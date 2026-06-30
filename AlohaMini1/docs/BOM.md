@@ -19,7 +19,9 @@ On AlohaMini, the Host side consists of a PC workstation and leader arms. VR con
 |------|---------------|-----|----------------|----------|----------------|----------|
 | Servo motor | Feetech / 12V 1/345 Gear(STS3215-C018)| 4 | $13.89 | [Alibaba](https://www.alibaba.com/product-detail/Feetech-12V-1-345-STS3215-C018_1601637205886.html?spm=a2700.micro_product_manager.0.0.5d083e5fucb6WW) | ¥110 | [taobao](https://item.taobao.com/item.htm?id=996544351583&spm=a213gs.v2success.0.0.73c04831naDrHP) |
 | Omni wheel | 4″ (≈100 mm) | 3 | $47 | [Amazon](https://www.amazon.com/Replacement-Plastic-Directional-Accessories-Platform/dp/B0F9W6QX5M/ref=sr_1_1?crid=RUB7HLFVFAW4&dib=eyJ2IjoiMSJ9.OEVluSHnKdSoUssYPqqvc9zDttA_kPqToxcIUPC9mVE.lDKJEFZ-n8SldCgHwC__Ikus8FGKxQcuN14cjtG5WHQ&dib_tag=se&keywords=Omni-Directional+Wheels+4&qid=1762964120&sprefix=omni-directional+wheels+4%2Caps%2C938&sr=8-1) | ¥135 | [pinduoduo](https://mobile.yangkeduo.com/goods.html?ps=kKWPC7xuzw) |
-| USB camera | 720p focal length 2.4 mm, 36×36 mm form factor | 3 | — | Amazon | ¥125 | [taobao](https://item.taobao.com/item.htm?id=666278411821) |
+| USB camera | 720p focal length 2.4 mm, 36×36 mm form factor | 3 | — | [Amazon](https://www.amazon.com/dp/B0FXWWF55X/ref=cm_sw_r_as_gl_apa_gl_i_HYMZD0PSVX6K3XMT5431?linkCode=ml1&tag=mobile085d650-20&linkId=ba70966b086cef0458681361641035a9) | ¥125 | [taobao](https://item.taobao.com/item.htm?id=666278411821) |
+| 4-port USB hub | USB hub for cameras, servo controllers, and accessories | 2 | — | [Amazon](https://www.amazon.com/dp/B00BWF5U0M/ref=cm_sw_r_as_gl_apa_gl_i_VX40DT3TW3WE33CAX7M6?linkCode=ml1&tag=mobile085d650-20&linkId=9af6ef11d4f5a10310681ac82827279f&th=1) | — | — |
+| Touchscreen monitor | 7-inch touchscreen monitor for the Raspberry Pi / onboard dashboard | 1 | — | [Amazon](https://www.amazon.com/dp/B09XKC53NH/ref=cm_sw_r_as_gl_apa_gl_i_J16ZM2DMY9TY23SVS0YE?linkCode=ml1&tag=mobile085d650-20&linkId=71ec1a14d3a3c0f1dc536760f04c5247&th=1) | — | — |
 | (optional) Bearing | 12×18×4 mm (ID × OD × W) — wheel axle bearing | 3 | — | Amazon | ¥6 | [tmall](https://detail.tmall.com/item.htm?id=824704356695) |
 | Bearing | 4×13×5 mm (ID × OD × W) — lift axis bearing | 8 | — | Amazon | ¥3 | [taobao](https://item.taobao.com/item.htm?id=565418362178) |
 | M2×12 Phillips screw | For camera mounts (OB_T_Camera_Mount.stl, OB_Top_Camera_Mount) | 12 | — | — | — | — |
@@ -85,6 +87,16 @@ If you prefer the base to operate as an **independent host system** (Wi‑Fi, un
 | DC converter | 12V → 5V / 5A buck converter | 1 | $13 | [Amazon](https://www.amazon.com/Klnuoxj-Converter-Interface-Waterproof-Compatible/dp/B0CRVW7N2J?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&smid=A1QRG6NHEUKUZO&gQT=0&th=1) | ¥75 | [taobao](https://item.taobao.com/item.htm?id=800698078303) |
 | Monitor | 7-inch HD IPS HDMI interface + touch + Type C power supply | 1 | — | Amazon | ¥291 | [taobao](https://item.taobao.com/item.htm?id=592070943040) |
 
+
+## Optional Teleoperation Accessories
+
+These accessories are not required for the base mechanical build, but they were used for the optional teleoperation setup described in `AlohaMini1/teleoperate`.
+
+| Item | Model / Notes | Qty | Unit Cost (US) | Buy (US) | Unit Cost (CN) | Buy (CN) |
+|------|---------------|-----|----------------|----------|----------------|----------|
+| Webcam for face steering | Logitech C270 or equivalent USB webcam | 1 | — | [Amazon](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6?th=1) | — | — |
+| VR goggles / phone holder for steering | Phone holder for gyro-based steering; use as an alternative to face steering | 1 | — | [Amazon](https://www.amazon.com/dp/B0G5QGFSPV/ref=cm_sw_r_as_gl_apa_gl_i_3AHFV3GBNAZGMCAS893G?linkCode=ml1&tag=mobile085d650-20&linkId=c308ee8a45b7da7df68c521f2d36e87d&th=1) | — | — |
+| USB foot pedals | Four pedals mapped to base forward/backward and lift up/down | 4 | — | [Amazon](https://www.amazon.com/dp/B0B1ZJVZ2K?ref=ppx_pop_mob_ap_share) | — | — |
 
 ## Follower Arms
 | Item | Model / Notes | Qty | Unit Cost (US) | Buy (US) | Unit Cost (CN) | Buy (CN) |
