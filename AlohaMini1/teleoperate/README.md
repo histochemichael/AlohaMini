@@ -51,6 +51,15 @@ These files do not include robot-specific calibration or hardware identity data.
 
 The working prototype used base servo IDs `9`, `8`, `10` and lift ID `11`, but do not assume those match your robot.
 
+## Optional hardware references
+
+These are not strict requirements; they are examples of hardware used during bring-up or hardware in the same style.
+
+- USB foot pedals for base/lift keyboard input: [Amazon example](https://www.amazon.com/dp/B0B1ZJVZ2K?ref=ppx_pop_mob_ap_share)
+- Phone holder / VR-style adapter for phone steering: [Amazon example](https://www.amazon.com/dp/B0B1ZJVZ2K?ref=ppx_pop_mob_ap_share)
+
+Any equivalent device should work if it presents itself to the PC as keyboard input for pedals, or securely holds the phone while the browser page streams orientation data.
+
 ## Dependencies
 
 ### Raspberry Pi
@@ -138,6 +147,8 @@ The phone gyro page is served by the PC sender at:
 ```text
 http://<PC_WIFI_IP>:8765
 ```
+
+A phone holder or VR-style adapter can make phone steering easier to keep centered while driving. One example is listed in [Optional hardware references](#optional-hardware-references).
 
 Android Chrome may block device orientation on insecure HTTP origins. If motion events are unavailable, either allow sensors for that site in Chrome settings, use face steering, or add a touch/slider steering fallback.
 
