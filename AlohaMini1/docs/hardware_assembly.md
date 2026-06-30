@@ -171,7 +171,6 @@ For the assembly of Leader arms and Follower arms, please refer to the tutorial:
    <img src="./media/assembly/40.jpg" width="400">
 
 4. Connect the 12V lithium battery to the step-down converter to provide power.
-
    <img src="./media/assembly/41.jpg" width="400">
 
 6. Connect the male plug of the 1-to-2 DC splitter cable to the female connectors of the two DC extension cables.
