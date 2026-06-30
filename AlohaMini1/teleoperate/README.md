@@ -57,6 +57,7 @@ These are not strict requirements; they are examples of hardware used during bri
 
 - USB foot pedals for base/lift keyboard input: [Amazon example](https://www.amazon.com/dp/B0B1ZJVZ2K?ref=ppx_pop_mob_ap_share)
 - Phone holder / VR-style adapter for phone steering: [Amazon example](https://www.amazon.com/dp/B0B1ZJVZ2K?ref=ppx_pop_mob_ap_share)
+- Webcam for face steering: [Logitech C270 HD webcam](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6)
 
 Any equivalent device should work if it presents itself to the PC as keyboard input for pedals, or securely holds the phone while the browser page streams orientation data.
 
@@ -156,7 +157,7 @@ Android Chrome may block device orientation on insecure HTTP origins. If motion 
 
 ## Face steering notes
 
-Face steering uses the PC camera and these main parameters:
+Face steering uses the PC camera and these main parameters. A standard USB webcam works; the optional hardware list includes one example used for this style of setup:
 
 ```text
 --steering-mode face
