@@ -154,7 +154,6 @@ Use `OB_T_Connector_So101_Adaptor` between the SO-101 follower arms and the `OB_
 
 Use `Camera_Cover` and `Camera_Spacers` for the camera modules. Insert the spacers between the camera board and cover, then fasten with 12 mm M2.5 screws. The BOM lists six M2.5×12 screws for this optional camera cover setup.
 
-<img src="./media/assembly/optional-adaptor-camera-covers-installed.jpg" width="500">
 
 ## Leader arms and Follower arms
 For the assembly of Leader arms and Follower arms, please refer to the tutorial: [SO-101 Assembly Guide](https://huggingface.co/docs/lerobot/so101). 
